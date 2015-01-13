@@ -7,7 +7,7 @@ def f(x, t, k=1, w=1, A=1):
     return A * e ** (1j * (k*x - w*t))
 
 tmax = 40*pi
-tstep = 0.5
+tstep = 0.01
 
 x = arange(0,200,0.1)
 t = arange(0,tmax,tstep)

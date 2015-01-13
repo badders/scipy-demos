@@ -21,9 +21,9 @@ wvalues = linspace(*wrange, num=n)
 
 # Create Matplotlib figure and plot objects
 fig = figure()
-graphR, = plot([], [], label='Real')
-graphI, = plot([], [], label='Imaginary', color='r')
-graphA, = plot([], [], label='Absolute', color='k')
+graphR, = plot([], [], label='Real', color='purple')
+graphI, = plot([], [], label='Imaginary', color='orange')
+graphA, = plot([], [], label='Absolute', color='black')
 
 # Prettify graph and set information
 xlabel('Distance')
