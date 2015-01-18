@@ -77,7 +77,8 @@ class NeedlePotential():
         return self.plt
 
     def createAnimator(self, framerate=30):
-        self.animator =  animation.FuncAnimation(self.fig, self.animate, repeat=False, frames=self.steps, interval=1000/framerate)
+        self.animator =  animation.FuncAnimation(self.fig, self.animate, repeat=False, frames=self.steps,
+                                                 interval=1000/framerate)
         return self.animator
 
     def save(self, filename):
