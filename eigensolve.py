@@ -121,7 +121,7 @@ if __name__ == '__main__':
         # Extend each function out to the maximum of all
         xs = concatenate(([-xlimit], xs, [xlimit]))
         psi = concatenate(([0], psi, [0]))
-        plot(xs, psi, label='n=%d' % n, linewidth=2)
+        plot(xs, psi, label='n=%d' % n)
 
     xlim(-5.5, 5.5)
     grid(True)
