@@ -1,6 +1,7 @@
 from __future__ import division
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 def magnitude(p):
     """
@@ -108,12 +109,13 @@ if __name__ == '__main__':
     i = np.array([p0, v0])
     n = 1000
 
-    # Set time to 1/2 an orbit
-    tmax =  np.pi / w
+    # Set time to  2  orbits
+    tmax =  4 * np.pi / w
     # Also set up a time for 10 orbits
     tmax10 = 20 * np.pi / w
 
     # Check the convergence using Newtonian mechanics
+    compute_acceleration = compute_accelerationNewton
     pE, _ = OrbitSolve(i, tmax, n, Euler2D)
     pEC, _ = OrbitSolve(i, tmax, n, EulerCromer2D)
     pLF, _ = OrbitSolve(i, tmax, n, Leapfrog2D)
@@ -122,13 +124,14 @@ if __name__ == '__main__':
     rEC = np.sqrt(pEC[:,0]**2 + pEC[:,1]**2)
     rLF = np.sqrt(pLF[:,0]**2 + pLF[:,1]**2)
 
-    d1 = rEC[-1] - rEC[n//2]
-    d2 = rEC[n//2] - rEC[n//4]
-    print('Euler-Cromer convergence: ', abs(d2/d1))
-
-    d1 = rLF[-1] - rLF[n//2]
-    d2 = rLF[n//2] - rLF[n//4]
-    print('Leapfrog convergence ', abs(d2/d1))
+    plt.figure()
+    plt.title('Comparison of Interpolation Methods')
+    plt.plot(rE, label='Euler')
+    plt.plot(rEC, label='Euler-Cromer')
+    plt.plot(rLF, label='Leapfrog')
+    plt.xlabel('Time')
+    plt.ylabel('Radius of Orbit')
+    plt.legend(loc='best')
 
     # Check the convergence using general relativity approximation
     compute_acceleration = compute_accelerationEinstein
@@ -149,3 +152,4 @@ if __name__ == '__main__':
 
     t = SolveToZero(i, T/100, Leapfrog2D)
     print('Particles Collide at t=', t)
+    plt.show()
